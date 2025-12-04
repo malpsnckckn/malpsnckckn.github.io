@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Storyboard</title>
+  <style>
+    html,body { height:100%; margin:0; background:#000; display:flex; align-items:center; justify-content:center; }
+    #container { width:100%; max-width:900px; height:100%; display:flex; align-items:center; justify-content:center; }
+    img { max-width:100%; max-height:100vh; cursor:pointer; user-select:none; }
+    .hint { position:fixed; bottom:12px; left:12px; color:#fff; font-family:sans-serif; opacity:0.8 }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="storyImg" src="images/images1.jpg" alt="Storyboard">
+  </div>
+  <div class="hint">Ekranın herhangi bir yerine dokun veya tıkla → sonraki sahne</div>
+
+  <script>
+    const images = [
+      "images/images1.jpg",
+      "images/images2.jpg",
+      "images/images3.jpg"
+    ];
+    let idx = 0;
+    const el = document.getElementById("storyImg");
+
+    el.addEventListener("click", function(){
+      if (idx < images.length - 1) {
+        idx++;
+        el.src = images[idx];
+      } else {
+        // Son sahnede ne olsun istersen:
+        // alert("Story bitti");
+        // veya tekrar başa döndür: idx = 0; el.src = images[idx];
+      }
+    });
+
+    // Dokunmatik cihazlarda daha güvenli olması için:
+    el.addEventListener("touchstart", function(e){ e.preventDefault(); el.click(); });
+  </script>
+</body>
+</html>
